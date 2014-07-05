@@ -45,19 +45,21 @@
   ],
   "provisioners": [
     {
-      "override": {
-        "virtualbox": {
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
-        },
-        "vmware": {
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
-        }
-      },
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
       "scripts": [
-        "script/postinstall.sh"
+        "script/sshd.sh",
+        "script/vagrant.sh",
+        "script/vmtools.sh",
+        "script/sudoers.sh",
+        "script/zypper-locks.sh",
+        "script/remove-dvd-source.sh",
+        "script/minimize.sh"
       ],
       "type": "shell"
     }
-  ]
+  ],
+  "variables": {
+    "mirror": "http://cdn2.novell.com/prot/Q_VbW21BiB4~"
+  }
 }
 
