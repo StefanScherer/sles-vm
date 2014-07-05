@@ -8,7 +8,7 @@
         " textmode=1",
         "<enter><wait>"
       ],
-      "boot_wait": "10s",
+      "boot_wait": "15s",
       "guest_os_type": "sles11-64",
       "http_directory": "http",
       "http_port_min": "8100",
@@ -41,7 +41,7 @@
         "<enter><wait>",
         "<wait10><wait10><wait10><wait10><wait10><wait10><enter>"
       ],
-      "boot_wait": "10s",
+      "boot_wait": "15s",
       "disk_size": 40960,
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "OpenSUSE_64",
