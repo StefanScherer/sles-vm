@@ -512,19 +512,12 @@
       <interface>
         <bootproto>dhcp</bootproto>
         <device>eth0</device>
-        <name>82540EM Gigabit Ethernet Controller</name>
         <startmode>auto</startmode>
         <usercontrol>no</usercontrol>
       </interface>
     </interfaces>
+    <keep_install_network config:type="boolean">true</keep_install_network>
     <managed config:type="boolean">false</managed>
-    <net-udev config:type="list">
-      <rule>
-        <name>eth0</name>
-        <rule>KERNELS</rule>
-        <value>0000:00:03.0</value>
-      </rule>
-    </net-udev>
     <routing>
       <ip_forward config:type="boolean">false</ip_forward>
     </routing>
@@ -596,7 +589,6 @@
 
     <packages config:type="list">
       <package>desktop-translations</package>
-      <package>gconf2-branding-SLES</package>
       <package>libproxy0-config-gnome</package>
       <package>sle-sdk-release</package>
       <package>sle-sdk-release-SDK</package>
