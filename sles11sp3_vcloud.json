@@ -25,7 +25,7 @@
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
-      "vm_name": "vagrant-sles11sp3",
+      "vm_name": "sles11sp3",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "memsize": "768",
