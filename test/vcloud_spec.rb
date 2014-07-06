@@ -8,7 +8,7 @@ describe 'box' do
   end
 
   # check SSH
-  describe service('ssh') do
+  describe service('sshd') do
     it { should be_enabled }
     it { should be_running }
   end
@@ -18,7 +18,7 @@ describe 'box' do
 
   # check for 10GBit vmxnet3
   describe command('dmesg') do
-    it { should return_stdout(/vmxnet3.*eth0: NIC Link is Up 10000 Mbps/)   }
+    it { should return_stdout(/eth1: NIC Link is Up 10000 Mbps/)   }
   end
 
 end
