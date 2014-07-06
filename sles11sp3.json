@@ -39,6 +39,7 @@
         " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/autoinst_en.xml",
         " textmode=1",
         "<enter><wait>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>"
         "<wait10><wait10><wait10><wait10><wait10><wait10><enter>"
       ],
       "boot_wait": "15s",
