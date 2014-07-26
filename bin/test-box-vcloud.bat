@@ -20,6 +20,11 @@ if exist %tmp_path% rmdir /s /q %tmp_path%
 
 if %quick%==1 goto :do_test
 
+if exist C:\Users\vagrant\.vagrant.d\Vagrantfile goto :have_vagrantfile
+if exist C:\vagrant\resources\Vagrantfile-global (
+  copy C:\vagrant\resources\Vagrantfile-global C:\Users\vagrant\.vagrant.d\Vagrantfile
+)
+:have_vagrantfile
 
 rem tested only with box-provider=vcloud
 vagrant plugin install vagrant-%box_provider%
