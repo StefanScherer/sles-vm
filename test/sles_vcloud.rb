@@ -27,4 +27,15 @@ describe 'box' do
   describe command('dmesg') do
     it { should return_stdout(/eth1: NIC Link is Up 10000 Mbps/)   }
   end
+
+  # VMware Tools
+  describe process("vmtoolsd") do
+    it { should be_running }
+  end
+
+  # check timezone
+  describe file('/etc/sysconfig/clock') do
+    it { should be_file }
+    its(:content) { should match /TIMEZONE=.Europe.Berlin./ }
+  end
 end
