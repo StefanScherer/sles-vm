@@ -515,6 +515,12 @@
         <startmode>auto</startmode>
         <usercontrol>no</usercontrol>
       </interface>
+      <interface>
+        <bootproto>dhcp</bootproto>
+        <device>eth1</device>
+        <startmode>auto</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
     </interfaces>
     <keep_install_network config:type="boolean">true</keep_install_network>
     <managed config:type="boolean">false</managed>
