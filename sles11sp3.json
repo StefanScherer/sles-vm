@@ -80,7 +80,7 @@
   ],
   "post-processors": [
     {
-      "keep_input_artifact": true,
+      "keep_input_artifact": false,
       "output": "sles11sp3_{{.Provider}}.box",
       "type": "vagrant"
     }
