@@ -10,6 +10,7 @@
       ],
       "boot_wait": "15s",
       "guest_os_type": "sles11-64",
+      "headless": true,
       "http_directory": "http",
       "http_port_min": "8100",
       "iso_checksum": "45f3feabc41dd90ae25a792b2a8babfb",
