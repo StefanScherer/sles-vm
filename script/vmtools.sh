@@ -10,6 +10,7 @@ virtualbox-iso|virtualbox-ovf)
     umount /tmp/vbox
     rmdir /tmp/vbox
     rm /home/vagrant/*.iso
+    /sbin/chkconfig boot.compliance off
     ;;
 
 vmware-iso|vmware-ovf) 
