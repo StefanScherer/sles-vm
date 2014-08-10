@@ -1,6 +1,5 @@
 rem 
-rem bin\test-box-vcloud.bat sles11sp3_vcloud.box sles11sp3
-
+rem bin\test-box-vcloud.bat ubuntu1204_vcloud.box ubuntu1204
 set quick=0
 
 if "%1x"=="--quickx" (
@@ -28,9 +27,10 @@ if exist C:\vagrant\resources\Vagrantfile-global (
 
 rem tested only with box-provider=vcloud
 vagrant plugin install vagrant-%box_provider%
+
 vagrant plugin install vagrant-serverspec
 
-vagrant box remove %box_name% --provider=%box_provider%
+vagrant box remove %box_name% --provider=%vagrant_provider%
 vagrant box add %box_name% %box_path%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 if ERRORLEVEL 1 goto :done
@@ -57,9 +57,6 @@ if ERRORLEVEL 1 goto :error_vcloud_upload
 :test_vagrant_box
 @echo.
 @echo Sleeping 120 seconds for vCloud to finish vAppTemplate import
-@echo Tests with 120 seconds still cause a 500 internal error while powering on
-@echo a vApp in vCloud. So be patient until we have a better upload
-@echo solution that waits until the import is really finished.
 @ping 1.1.1.1 -n 1 -w 120000 > nul
 
 :do_test
@@ -76,7 +73,7 @@ if exist %USERPROFILE%\.ssh\known_hosts echo known_hosts still here!!
 vagrant up --provider=%vagrant_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 
-set VAGRANT_LOG=warn
+set VAGRANT_LOG=debug
 @echo Sleep 10 seconds
 @ping 1.1.1.1 -n 1 -w 10000 > nul
 
@@ -86,7 +83,8 @@ popd
 
 if %quick%==1 goto :done
 
-vagrant box remove %box_name% --provider=%box_provider%
+set VAGRANT_LOG=warn
+vagrant box remove %box_name% --provider=%vagrant_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 
 goto :done
@@ -111,7 +109,7 @@ echo     tst.vm.provider :vcloud do ^|vcloud^| >>Vagrantfile
 echo       vcloud.vapp_prefix = "%box_name%" >>Vagrantfile
 echo     end >>Vagrantfile
 echo     tst.vm.provision :serverspec do ^|spec^| >>Vagrantfile
-echo       spec.pattern = '../test/*_spec.rb' >>Vagrantfile
+echo       spec.pattern = '../test/*_%box_provider%.rb' >>Vagrantfile
 echo     end >>Vagrantfile
 echo   end >>Vagrantfile
 echo end >>Vagrantfile
