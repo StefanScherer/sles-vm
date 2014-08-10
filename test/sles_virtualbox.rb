@@ -22,4 +22,18 @@ describe 'box' do
   describe port(22) do
     it { should be_listening  }
   end
+
+  # Virtual Box Additions
+  describe command('/sbin/service vboxadd status') do
+    it { should return_stdout(/The VirtualBox Additions are currently running./) }
+  end
+  describe command('/sbin/service vboxadd-service status') do
+    it { should return_stdout(/Checking for VBoxService .*running/) }
+  end
+
+  # check timezone
+  describe file('/etc/sysconfig/clock') do
+    it { should be_file }
+    its(:content) { should match /TIMEZONE=.Europe.Berlin./ }
+  end
 end

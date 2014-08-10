@@ -54,6 +54,7 @@
         "script/sudoers.sh",
         "script/zypper-locks.sh",
         "script/remove-dvd-source.sh",
+        "script/fix-eth0.sh",
         "script/minimize.sh"
       ],
       "type": "shell"
