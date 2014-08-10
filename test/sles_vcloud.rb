@@ -25,7 +25,7 @@ describe 'box' do
 
   # check for 10GBit vmxnet3
   describe command('dmesg') do
-    it { should return_stdout(/eth1: NIC Link is Up 10000 Mbps/)   }
+    it { should return_stdout(/eth0: NIC Link is Up 10000 Mbps/)   }
   end
 
   # VMware Tools
