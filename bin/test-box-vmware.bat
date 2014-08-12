@@ -8,7 +8,8 @@ if "%1x"=="--quickx" (
 )
 set box_path=%1
 set box_name=%2
-set box_provider=vmware
+set box_suffix=vmware
+set box_provider=vmware_desktop
 set vagrant_provider=vmware_workstation
 set vagrant_plugin=vagrant-vmware-workstation
 
@@ -27,7 +28,7 @@ if exist c:\vagrant\resources\license.lic (
     vagrant plugin license %vagrant_plugin% c:\vagrant\resources\license.lic
   )
 )
-vagrant box remove %box_name% --provider=%vagrant_provider%
+vagrant box remove %box_name% --provider=%box_provider%
 vagrant box add %box_name% %box_path%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 if ERRORLEVEL 1 goto :done
@@ -54,7 +55,7 @@ popd
 
 if %quick%==1 goto :done
 
-vagrant box remove %box_name% --provider=vmware_desktop
+vagrant box remove %box_name% --provider=%box_provider%
 if ERRORLEVEL 1 set result=%ERRORLEVEL%
 
 goto :done
@@ -72,7 +73,7 @@ echo   config.vm.define :"tst" do ^|tst^| >>Vagrantfile
 echo     tst.vm.box = "%box_name%" >>Vagrantfile
 echo     tst.vm.hostname = "tst"
 echo     tst.vm.provision :serverspec do ^|spec^| >>Vagrantfile
-echo       spec.pattern = '../test/*_%box_provider%.rb' >>Vagrantfile
+echo       spec.pattern = '../test/*_%box_suffix%.rb' >>Vagrantfile
 echo     end >>Vagrantfile
 echo   end >>Vagrantfile
 echo end >>Vagrantfile
