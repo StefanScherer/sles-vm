@@ -48,6 +48,7 @@
     {
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh '{{.Path}}'",
       "scripts": [
+        "script/update.sh",
         "script/sshd.sh",
         "script/vagrant.sh",
         "script/vmtools.sh",
