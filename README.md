@@ -10,6 +10,7 @@ using Packer.
 64-bit boxes:
 
 * SLES 11 SP 3
+* SLES 12
 
 ## Building the Vagrant boxes
 

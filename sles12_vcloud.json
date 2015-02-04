@@ -4,7 +4,7 @@
       "boot_command": [
         "<esc><enter><wait>",
         "linux netdevice=eth0 netsetup=dhcp install=cd:/",
-        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/sles11-autoinst.xml",
+        " lang=en_US autoyast=http://{{ .HTTPIP }}:{{ .HTTPPort }}/sles12-autoinst.xml",
         " textmode=1",
         "<enter><wait>"
       ],
@@ -13,11 +13,11 @@
       "headless": true,
       "http_directory": "http",
       "http_port_min": "8100",
-      "iso_checksum": "45f3feabc41dd90ae25a792b2a8babfb",
+      "iso_checksum": "64b50e62b9c5b603d83fe128adb7dc6c",
       "iso_checksum_type": "md5",
       "iso_urls": [ 
-        "http://roecloudsrv001.sealsystems.local/sles/sles11sp3_for_vmware/SLES-11-SP3-for-VMware-DVD-x86_64-GM-DVD1.iso",
-        "file:///Users/stefan/iso/SLES-11-SP3-for-VMware-DVD-x86_64-GM-DVD1.iso"
+        "http://roecloudsrv001.sealsystems.local/sles/sles12/SLE-12-Server-DVD-x86_64-GM-DVD1.iso",
+        "file:///Users/stefan/iso/SLE-12-Server-DVD-x86_64-GM-DVD1.iso"
       ],
       "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
       "ssh_password": "vagrant",
@@ -26,7 +26,7 @@
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
-      "vm_name": "sles11sp3",
+      "vm_name": "sles12",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "memsize": "768",
@@ -41,7 +41,7 @@
     {
       "type": "vagrant-vmware-ovf",
       "provider": "vcloud",
-      "output": "sles11sp3_vcloud.box"
+      "output": "sles12_vcloud.box"
     }
   ],
   "provisioners": [

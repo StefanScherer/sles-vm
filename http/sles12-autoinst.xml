@@ -2,13 +2,7 @@
 <!DOCTYPE profile>
 <profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
   <add-on>
-    <add_on_products config:type="list">
-      <listentry>
-        <media_url><![CDATA[http://demeter.uni-regensburg.de/SLE11SP3-SDK-x64/DVD1/]]></media_url>
-        <product>sle-sdk</product>
-        <product_dir>/</product_dir>
-      </listentry>
-    </add_on_products>
+    <add_on_products config:type="list"/>
   </add-on>
   <bootloader>
     <device_map config:type="list">
@@ -19,11 +13,17 @@
     </device_map>
     <global>
       <activate>true</activate>
+      <append>   resume=/dev/sda1 splash=silent quiet showopts</append>
+      <append_failsafe>showopts apm=off noresume edd=off powersaved=off nohz=off highres=off processor.max_cstate=1 nomodeset x11failsafe</append_failsafe>
+      <boot_boot>false</boot_boot>
+      <boot_extended>false</boot_extended>
+      <boot_mbr>false</boot_mbr>
       <boot_root>true</boot_root>
-      <default>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</default>
+      <default>0</default>
+      <distributor>SLES12</distributor>
       <generic_mbr>true</generic_mbr>
-      <gfxmenu>/boot/message</gfxmenu>
-      <lines_cache_id>2</lines_cache_id>
+      <gfxmode>auto</gfxmode>
+      <os_prober>false</os_prober>
       <timeout config:type="integer">8</timeout>
     </global>
     <initrd_modules config:type="list">
@@ -42,53 +42,71 @@
       <initrd_module>
         <module>mbcache</module>
       </initrd_module>
-      <initrd_module>
-        <module>ext3</module>
-      </initrd_module>      
     </initrd_modules>
-    <loader_type>grub</loader_type>
-    <sections config:type="list">
-      <section>
-        <append>resume=/dev/sda1 splash=silent crashkernel=128M-:64M showopts</append>
-        <image>(hd0,1)/boot/vmlinuz-3.0.76-0.11-default</image>
-        <initial>1</initial>
-        <initrd>(hd0,1)/boot/initrd-3.0.76-0.11-default</initrd>
-        <lines_cache_id>0</lines_cache_id>
-        <name>SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
-        <original_name>linux</original_name>
-        <root>/dev/sda2</root>
-        <type>image</type>
-        <vgamode>0x314</vgamode>
-      </section>
-      <section>
-        <append>showopts ide=nodma apm=off noresume edd=off powersaved=off nohz=off highres=off processor.max_cstate=1 nomodeset x11failsafe</append>
-        <image>(hd0,1)/boot/vmlinuz-3.0.76-0.11-default</image>
-        <initrd>(hd0,1)/boot/initrd-3.0.76-0.11-default</initrd>
-        <lines_cache_id>1</lines_cache_id>
-        <name>Failsafe -- SUSE Linux Enterprise Server 11 SP3 - 3.0.76-0.11</name>
-        <original_name>failsafe</original_name>
-        <root>/dev/sda2</root>
-        <type>image</type>
-        <vgamode>0x314</vgamode>
-      </section>
-    </sections>
+    <loader_type>grub2</loader_type>
+    <sections config:type="list"/>
   </bootloader>
   <ca_mgm>
     <CAName>YaST_Default_CA</CAName>
-    <ca_commonName>YaST Default CA (vagrant-sles-11sp3-x64)</ca_commonName>
+    <ca_commonName>YaST Default CA (vagrant-sles-12-x64)</ca_commonName>
     <country>US</country>
-    <locality></locality>
-    <organisation></organisation>
-    <organisationUnit></organisationUnit>
+    <locality/>
+    <organisation/>
+    <organisationUnit/>
     <password>ENTER PASSWORD HERE</password>
-    <server_commonName>vagrant-sles-11sp3-x64.vagrantup.com</server_commonName>
+    <server_commonName>vagrant-sles-12-x64.vagrantup.com</server_commonName>
     <server_email>postmaster@vagrantup.com</server_email>
-    <state></state>
+    <state/>
     <takeLocalServerName config:type="boolean">false</takeLocalServerName>
   </ca_mgm>
   <deploy_image>
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
+  <firewall>
+    <FW_ALLOW_FW_BROADCAST_DMZ>no</FW_ALLOW_FW_BROADCAST_DMZ>
+    <FW_ALLOW_FW_BROADCAST_EXT>no</FW_ALLOW_FW_BROADCAST_EXT>
+    <FW_ALLOW_FW_BROADCAST_INT>no</FW_ALLOW_FW_BROADCAST_INT>
+    <FW_CONFIGURATIONS_DMZ/>
+    <FW_CONFIGURATIONS_EXT/>
+    <FW_CONFIGURATIONS_INT/>
+    <FW_DEV_DMZ/>
+    <FW_DEV_EXT/>
+    <FW_DEV_INT/>
+    <FW_FORWARD_ALWAYS_INOUT_DEV/>
+    <FW_FORWARD_MASQ/>
+    <FW_IGNORE_FW_BROADCAST_DMZ>no</FW_IGNORE_FW_BROADCAST_DMZ>
+    <FW_IGNORE_FW_BROADCAST_EXT>yes</FW_IGNORE_FW_BROADCAST_EXT>
+    <FW_IGNORE_FW_BROADCAST_INT>no</FW_IGNORE_FW_BROADCAST_INT>
+    <FW_IPSEC_TRUST>no</FW_IPSEC_TRUST>
+    <FW_LOAD_MODULES/>
+    <FW_LOG_ACCEPT_ALL>no</FW_LOG_ACCEPT_ALL>
+    <FW_LOG_ACCEPT_CRIT>yes</FW_LOG_ACCEPT_CRIT>
+    <FW_LOG_DROP_ALL>no</FW_LOG_DROP_ALL>
+    <FW_LOG_DROP_CRIT>yes</FW_LOG_DROP_CRIT>
+    <FW_MASQUERADE>no</FW_MASQUERADE>
+    <FW_PROTECT_FROM_INT>no</FW_PROTECT_FROM_INT>
+    <FW_ROUTE>no</FW_ROUTE>
+    <FW_SERVICES_ACCEPT_DMZ/>
+    <FW_SERVICES_ACCEPT_EXT/>
+    <FW_SERVICES_ACCEPT_INT/>
+    <FW_SERVICES_ACCEPT_RELATED_DMZ/>
+    <FW_SERVICES_ACCEPT_RELATED_EXT/>
+    <FW_SERVICES_ACCEPT_RELATED_INT/>
+    <FW_SERVICES_DMZ_IP/>
+    <FW_SERVICES_DMZ_RPC/>
+    <FW_SERVICES_DMZ_TCP/>
+    <FW_SERVICES_DMZ_UDP/>
+    <FW_SERVICES_EXT_IP/>
+    <FW_SERVICES_EXT_RPC/>
+    <FW_SERVICES_EXT_TCP/>
+    <FW_SERVICES_EXT_UDP/>
+    <FW_SERVICES_INT_IP/>
+    <FW_SERVICES_INT_RPC/>
+    <FW_SERVICES_INT_TCP/>
+    <FW_SERVICES_INT_UDP/>
+    <enable_firewall config:type="boolean">true</enable_firewall>
+    <start_firewall config:type="boolean">true</start_firewall>
+  </firewall>
   <general>
     <ask-list config:type="list"/>
     <mode>
@@ -114,77 +132,49 @@
       <gid>100</gid>
       <group_password>x</group_password>
       <groupname>users</groupname>
-      <userlist></userlist>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>19</gid>
+      <gid>32</gid>
       <group_password>x</group_password>
-      <groupname>floppy</groupname>
-      <userlist></userlist>
+      <groupname>public</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>1</gid>
+      <gid>42</gid>
       <group_password>x</group_password>
-      <groupname>bin</groupname>
-      <userlist>daemon</userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>41</gid>
-      <group_password>x</group_password>
-      <groupname>xok</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>65533</gid>
-      <group_password>x</group_password>
-      <groupname>nobody</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>43</gid>
-      <group_password>x</group_password>
-      <groupname>modem</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>5</gid>
-      <group_password>x</group_password>
-      <groupname>tty</groupname>
-      <userlist></userlist>
+      <groupname>trusted</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
       <gid>7</gid>
       <group_password>x</group_password>
       <groupname>lp</groupname>
-      <userlist></userlist>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>104</gid>
-      <group_password>!</group_password>
-      <groupname>uuidd</groupname>
-      <userlist></userlist>
+      <gid>498</gid>
+      <group_password>x</group_password>
+      <groupname>sshd</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>51</gid>
-      <group_password>!</group_password>
-      <groupname>postfix</groupname>
-      <userlist></userlist>
+      <gid>54</gid>
+      <group_password>x</group_password>
+      <groupname>lock</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>112</gid>
-      <group_password>!</group_password>
-      <groupname>gdm</groupname>
-      <userlist></userlist>
+      <gid>20</gid>
+      <group_password>x</group_password>
+      <groupname>cdrom</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
@@ -195,255 +185,206 @@
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>101</gid>
-      <group_password>!</group_password>
+      <gid>6</gid>
+      <group_password>x</group_password>
+      <groupname>disk</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>499</gid>
+      <group_password>x</group_password>
       <groupname>messagebus</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>59</gid>
-      <group_password>!</group_password>
-      <groupname>maildrop</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>33</gid>
-      <group_password>x</group_password>
-      <groupname>video</groupname>
-      <userlist>vagrant</userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>3</gid>
-      <group_password>x</group_password>
-      <groupname>sys</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>15</gid>
-      <group_password>x</group_password>
-      <groupname>shadow</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>20</gid>
-      <group_password>x</group_password>
-      <groupname>cdrom</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>21</gid>
-      <group_password>x</group_password>
-      <groupname>console</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>42</gid>
-      <group_password>x</group_password>
-      <groupname>trusted</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>102</gid>
-      <group_password>!</group_password>
-      <groupname>haldaemon</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>106</gid>
-      <group_password>!</group_password>
-      <groupname>puppet</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>16</gid>
-      <group_password>x</group_password>
-      <groupname>dialout</groupname>
-      <userlist>vagrant</userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>107</gid>
-      <group_password>!</group_password>
-      <groupname>polkituser</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>10</gid>
-      <group_password>x</group_password>
-      <groupname>wheel</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>109</gid>
-      <group_password>!</group_password>
-      <groupname>pulse</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>8</gid>
-      <group_password>x</group_password>
-      <groupname>www</groupname>
-      <userlist></userlist>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
       <gid>40</gid>
       <group_password>x</group_password>
       <groupname>games</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>6</gid>
-      <group_password>x</group_password>
-      <groupname>disk</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>17</gid>
-      <group_password>x</group_password>
-      <groupname>audio</groupname>
-      <userlist>pulse</userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>111</gid>
-      <group_password>!</group_password>
-      <groupname>suse-ncc</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>49</gid>
-      <group_password>x</group_password>
-      <groupname>ftp</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>103</gid>
-      <group_password>!</group_password>
-      <groupname>tape</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>25</gid>
-      <group_password>!</group_password>
-      <groupname>at</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>9</gid>
-      <group_password>x</group_password>
-      <groupname>kmem</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>32</gid>
-      <group_password>x</group_password>
-      <groupname>public</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>12</gid>
-      <group_password>x</group_password>
-      <groupname>mail</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>0</gid>
-      <group_password>x</group_password>
-      <groupname>root</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>2</gid>
-      <group_password>x</group_password>
-      <groupname>daemon</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>105</gid>
-      <group_password>!</group_password>
-      <groupname>sfcb</groupname>
-      <userlist>root</userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>108</gid>
-      <group_password>!</group_password>
-      <groupname>ntp</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>14</gid>
-      <group_password>x</group_password>
-      <groupname>uucp</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>110</gid>
-      <group_password>!</group_password>
-      <groupname>pulse-access</groupname>
-      <userlist></userlist>
-    </group>
-    <group>
-      <encrypted config:type="boolean">true</encrypted>
-      <gid>71</gid>
-      <group_password>!</group_password>
-      <groupname>ntadmin</groupname>
-      <userlist></userlist>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
       <gid>62</gid>
       <group_password>x</group_password>
       <groupname>man</groupname>
-      <userlist></userlist>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>496</gid>
+      <group_password>x</group_password>
+      <groupname>polkitd</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>5</gid>
+      <group_password>x</group_password>
+      <groupname>tty</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>9</gid>
+      <group_password>x</group_password>
+      <groupname>kmem</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>19</gid>
+      <group_password>x</group_password>
+      <groupname>floppy</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>17</gid>
+      <group_password>x</group_password>
+      <groupname>audio</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>10</gid>
+      <group_password>x</group_password>
+      <groupname>wheel</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>0</gid>
+      <group_password>x</group_password>
+      <groupname>root</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>65533</gid>
+      <group_password>x</group_password>
+      <groupname>nobody</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>8</gid>
+      <group_password>x</group_password>
+      <groupname>www</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>15</gid>
+      <group_password>x</group_password>
+      <groupname>shadow</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
       <gid>22</gid>
       <group_password>x</group_password>
       <groupname>utmp</groupname>
-      <userlist></userlist>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>3</gid>
+      <group_password>x</group_password>
+      <groupname>sys</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>14</gid>
+      <group_password>x</group_password>
+      <groupname>uucp</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>495</gid>
+      <group_password>x</group_password>
+      <groupname>nscd</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>497</gid>
+      <group_password>x</group_password>
+      <groupname>tape</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>2</gid>
+      <group_password>x</group_password>
+      <groupname>daemon</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>43</gid>
+      <group_password>x</group_password>
+      <groupname>modem</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>49</gid>
+      <group_password>x</group_password>
+      <groupname>ftp</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>21</gid>
+      <group_password>x</group_password>
+      <groupname>console</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>12</gid>
+      <group_password>x</group_password>
+      <groupname>mail</groupname>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
       <gid>13</gid>
       <group_password>x</group_password>
       <groupname>news</groupname>
-      <userlist></userlist>
+      <userlist/>
     </group>
     <group>
       <encrypted config:type="boolean">true</encrypted>
-      <gid>65</gid>
-      <group_password>!</group_password>
-      <groupname>sshd</groupname>
-      <userlist></userlist>
+      <gid>41</gid>
+      <group_password>x</group_password>
+      <groupname>xok</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>33</gid>
+      <group_password>x</group_password>
+      <groupname>video</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>16</gid>
+      <group_password>x</group_password>
+      <groupname>dialout</groupname>
+      <userlist/>
+    </group>
+    <group>
+      <encrypted config:type="boolean">true</encrypted>
+      <gid>1</gid>
+      <group_password>x</group_password>
+      <groupname>bin</groupname>
+      <userlist>daemon</userlist>
     </group>
   </groups>
   <host>
@@ -492,16 +433,40 @@
       </hosts_entry>
     </hosts>
   </host>
+  <kdump>
+    <add_crash_kernel config:type="boolean">false</add_crash_kernel>
+    <crash_kernel>208M-:104M</crash_kernel>
+    <general>
+      <KDUMP_COMMANDLINE/>
+      <KDUMP_COMMANDLINE_APPEND/>
+      <KDUMP_COPY_KERNEL>yes</KDUMP_COPY_KERNEL>
+      <KDUMP_DUMPFORMAT>lzo</KDUMP_DUMPFORMAT>
+      <KDUMP_DUMPLEVEL>31</KDUMP_DUMPLEVEL>
+      <KDUMP_FREE_DISK_SIZE>64</KDUMP_FREE_DISK_SIZE>
+      <KDUMP_IMMEDIATE_REBOOT>yes</KDUMP_IMMEDIATE_REBOOT>
+      <KDUMP_KEEP_OLD_DUMPS>5</KDUMP_KEEP_OLD_DUMPS>
+      <KDUMP_KERNELVER/>
+      <KDUMP_NOTIFICATION_CC/>
+      <KDUMP_NOTIFICATION_TO/>
+      <KDUMP_SAVEDIR>file:///var/crash</KDUMP_SAVEDIR>
+      <KDUMP_SMTP_PASSWORD/>
+      <KDUMP_SMTP_SERVER/>
+      <KDUMP_SMTP_USER/>
+      <KDUMP_TRANSFER/>
+      <KDUMP_VERBOSE>3</KDUMP_VERBOSE>
+      <KEXEC_OPTIONS/>
+    </general>
+  </kdump>
   <login_settings/>
   <networking>
     <dhcp_options>
-      <dhclient_client_id></dhclient_client_id>
+      <dhclient_client_id/>
       <dhclient_hostname_option>AUTO</dhclient_hostname_option>
     </dhcp_options>
     <dns>
       <dhcp_hostname config:type="boolean">false</dhcp_hostname>
       <domain>vagrantup.com</domain>
-      <hostname>vagrant-sles-11sp3-x64</hostname>
+      <hostname>vagrant-sles-12-x64</hostname>
       <resolv_conf_policy>auto</resolv_conf_policy>
       <searchlist config:type="list">
         <search>vagrantup.com</search>
@@ -512,6 +477,7 @@
       <interface>
         <bootproto>dhcp</bootproto>
         <device>eth0</device>
+        <dhclient_set_default_route>yes</dhclient_set_default_route>
         <startmode>auto</startmode>
         <usercontrol>no</usercontrol>
       </interface>
@@ -519,22 +485,10 @@
     <keep_install_network config:type="boolean">true</keep_install_network>
     <managed config:type="boolean">false</managed>
     <routing>
-      <ip_forward config:type="boolean">false</ip_forward>
+      <ipv4_forward config:type="boolean">false</ipv4_forward>
+      <ipv6_forward config:type="boolean">false</ipv6_forward>
     </routing>
   </networking>
-
-  <keyboard>
-    <keymap>german</keymap>
-  </keyboard>
-  <language>
-    <language>en_US</language>
-    <languages>en_US</languages>
-  </language>
-  <timezone>
-    <hwclock>UTC</hwclock>
-    <timezone>Europe/Berlin</timezone>
-  </timezone>
-
   <partitioning config:type="list">
     <drive>
       <device>/dev/sda</device>
@@ -558,9 +512,8 @@
         <partition>
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
-          <filesystem config:type="symbol">ext3</filesystem>
+          <filesystem config:type="symbol">btrfs</filesystem>
           <format config:type="boolean">true</format>
-          <fstopt>acl,user_xattr</fstopt>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/</mount>
           <mountby config:type="symbol">device</mountby>
@@ -569,13 +522,39 @@
           <raid_options/>
           <resize config:type="boolean">false</resize>
           <size>19895844352</size>
+          <subvolumes config:type="list">
+            <listentry>boot/grub2/i386-pc</listentry>
+            <listentry>boot/grub2/x86_64-efi</listentry>
+            <listentry>home</listentry>
+            <listentry>opt</listentry>
+            <listentry>srv</listentry>
+            <listentry>tmp</listentry>
+            <listentry>usr/local</listentry>
+            <listentry>var/crash</listentry>
+            <listentry>var/lib/mailman</listentry>
+            <listentry>var/lib/named</listentry>
+            <listentry>var/lib/pgsql</listentry>
+            <listentry>var/log</listentry>
+            <listentry>var/opt</listentry>
+            <listentry>var/spool</listentry>
+            <listentry>var/tmp</listentry>
+          </subvolumes>
         </partition>
       </partitions>
-      <pesize></pesize>
+      <pesize/>
       <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
   </partitioning>
+  <proxy>
+    <enabled config:type="boolean">false</enabled>
+    <ftp_proxy/>
+    <http_proxy/>
+    <https_proxy/>
+    <no_proxy>localhost, 127.0.0.1</no_proxy>
+    <proxy_password/>
+    <proxy_user/>
+  </proxy>
   <report>
     <errors>
       <log config:type="boolean">true</log>
@@ -598,30 +577,57 @@
       <timeout config:type="integer">0</timeout>
     </yesno_messages>
   </report>
+  <services-manager>
+    <default_target>graphical</default_target>
+    <services>
+      <disable config:type="list"/>
+      <enable config:type="list">
+        <service>sshd</service>
+      </enable>
+    </services>
+  </services-manager>
   <software>
 
     <packages config:type="list">
       <package>desktop-translations</package>
-      <package>libproxy0-config-gnome</package>
-      <package>sle-sdk-release</package>
-      <package>sle-sdk-release-SDK</package>
       <package>sles-manuals_en</package>
       <package>yast2-trans-en_US</package>
+      <package>kernel-default-devel</package>
+      <package>grub2</package>
+      <package>syslinux</package>
+      <package>snapper</package>
+      <package>sles-release</package>
+      <package>SuSEfirewall2</package>
+      <package>sudo</package>
+      <package>gcc</package>
+      <package>wget</package>
+      <package>perl</package>
+      <package>make</package>
     </packages>
     <patterns config:type="list">
       <pattern>Basis-Devel</pattern>
       <pattern>Minimal</pattern>
       <pattern>apparmor</pattern>
       <pattern>base</pattern>
-      <pattern>sdk_kernel</pattern>
     </patterns>
     <remove-packages config:type="list">
       <package>zenity</package>
       <package>zenity-lang</package>
     </remove-packages>
   </software>
+  <keyboard>
+    <keymap>german</keymap>
+  </keyboard>
+  <language>
+    <language>en_US</language>
+    <languages>en_US</languages>
+  </language>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>Europe/Berlin</timezone>
+  </timezone>
   <user_defaults>
-    <expire></expire>
+    <expire/>
     <group>100</group>
     <groups>video,dialout</groups>
     <home>/home</home>
@@ -637,9 +643,9 @@
       <gid>100</gid>
       <home>/home/vagrant</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
+        <expire/>
+        <flag/>
+        <inact/>
         <max>99999</max>
         <min>0</min>
         <warn>7</warn>
@@ -651,21 +657,21 @@
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>Games account</fullname>
-      <gid>100</gid>
-      <home>/var/games</home>
+      <fullname>News system</fullname>
+      <gid>13</gid>
+      <home>/etc/news</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/bash</shell>
-      <uid>12</uid>
+      <uid>9</uid>
       <user_password>*</user_password>
-      <username>games</username>
+      <username>news</username>
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
@@ -673,12 +679,12 @@
       <gid>1</gid>
       <home>/bin</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/bash</shell>
       <uid>1</uid>
@@ -687,106 +693,16 @@
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>nobody</fullname>
-      <gid>65533</gid>
-      <home>/var/lib/nobody</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>65534</uid>
-      <user_password>*</user_password>
-      <username>nobody</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Printing daemon</fullname>
-      <gid>7</gid>
-      <home>/var/spool/lpd</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>4</uid>
-      <user_password>*</user_password>
-      <username>lp</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>User for uuidd</fullname>
-      <gid>104</gid>
-      <home>/var/run/uuidd</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>102</uid>
-      <user_password>*</user_password>
-      <username>uuidd</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Postfix Daemon</fullname>
-      <gid>51</gid>
-      <home>/var/spool/postfix</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>51</uid>
-      <user_password>*</user_password>
-      <username>postfix</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Novell Customer Center User</fullname>
-      <gid>111</gid>
-      <home>/var/lib/YaST2/suse-ncc-fakehome</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>106</uid>
-      <user_password>*</user_password>
-      <username>suse-ncc</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
       <fullname>FTP account</fullname>
       <gid>49</gid>
       <home>/srv/ftp</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/bash</shell>
       <uid>40</uid>
@@ -795,178 +711,16 @@
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>Gnome Display Manager daemon</fullname>
-      <gid>112</gid>
-      <home>/var/lib/gdm</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>107</uid>
-      <user_password>*</user_password>
-      <username>gdm</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Batch jobs daemon</fullname>
-      <gid>25</gid>
-      <home>/var/spool/atjobs</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>25</uid>
-      <user_password>*</user_password>
-      <username>at</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>root</fullname>
-      <gid>0</gid>
-      <home>/root</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>0</uid>
-      <user_password>$2y$05$NA1Li9ZKJOLRW5mMTXm6/e5r8dltWS5RpDZpvHrI82aLE00V51tdi</user_password>
-      <username>root</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Mailer daemon</fullname>
-      <gid>12</gid>
-      <home>/var/spool/clientmqueue</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>8</uid>
-      <user_password>*</user_password>
-      <username>mail</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Daemon</fullname>
-      <gid>2</gid>
-      <home>/sbin</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>2</uid>
-      <user_password>*</user_password>
-      <username>daemon</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>NTP daemon</fullname>
-      <gid>108</gid>
-      <home>/var/lib/ntp</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>74</uid>
-      <user_password>*</user_password>
-      <username>ntp</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>Unix-to-Unix CoPy system</fullname>
-      <gid>14</gid>
-      <home>/etc/uucp</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
-      </password_settings>
-      <shell>/bin/bash</shell>
-      <uid>10</uid>
-      <user_password>*</user_password>
-      <username>uucp</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>User for D-Bus</fullname>
-      <gid>101</gid>
-      <home>/var/run/dbus</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>100</uid>
-      <user_password>*</user_password>
-      <username>messagebus</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
-      <fullname>User for haldaemon</fullname>
-      <gid>102</gid>
-      <home>/var/run/hald</home>
-      <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min>0</min>
-        <warn>7</warn>
-      </password_settings>
-      <shell>/bin/false</shell>
-      <uid>101</uid>
-      <user_password>*</user_password>
-      <username>haldaemon</username>
-    </user>
-    <user>
-      <encrypted config:type="boolean">true</encrypted>
       <fullname>WWW daemon apache</fullname>
       <gid>8</gid>
       <home>/var/lib/wwwrun</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/false</shell>
       <uid>30</uid>
@@ -975,16 +729,34 @@
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
+      <fullname>User for polkitd</fullname>
+      <gid>496</gid>
+      <home>/var/lib/polkit</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/sbin/nologin</shell>
+      <uid>497</uid>
+      <user_password>!</user_password>
+      <username>polkitd</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
       <fullname>Manual pages viewer</fullname>
       <gid>62</gid>
       <home>/var/cache/man</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/bash</shell>
       <uid>13</uid>
@@ -993,65 +765,219 @@
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>PolicyKit</fullname>
-      <gid>107</gid>
-      <home>/var/run/PolicyKit</home>
+      <fullname>Daemon</fullname>
+      <gid>2</gid>
+      <home>/sbin</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
-      <shell>/bin/false</shell>
-      <uid>104</uid>
+      <shell>/bin/bash</shell>
+      <uid>2</uid>
       <user_password>*</user_password>
-      <username>polkituser</username>
+      <username>daemon</username>
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>News system</fullname>
-      <gid>13</gid>
-      <home>/etc/news</home>
+      <fullname>root</fullname>
+      <gid>0</gid>
+      <home>/root</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max></max>
-        <min></min>
-        <warn></warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
       <shell>/bin/bash</shell>
-      <uid>9</uid>
-      <user_password>*</user_password>
-      <username>news</username>
+      <uid>0</uid>
+      <user_password>$6$UgKtUD0AUMIA$VWLyc2Uvl0Lk6xxfTuoRb0/jrhZ9IJG/Gtx/DkZUEWZm.JYO1Q1fvPo6gDxQAHp38kQ1DG1vNGRgu2T/z/vih.</user_password>
+      <username>root</username>
     </user>
     <user>
-      <fullname>SSH daemon</fullname>
-      <gid>65</gid>
-      <home>/var/lib/sshd</home>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>nobody</fullname>
+      <gid>65533</gid>
+      <home>/var/lib/nobody</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>65534</uid>
+      <user_password>*</user_password>
+      <username>nobody</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>Mailer daemon</fullname>
+      <gid>12</gid>
+      <home>/var/spool/clientmqueue</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
       <shell>/bin/false</shell>
-      <uid>71</uid>
+      <uid>8</uid>
+      <user_password>*</user_password>
+      <username>mail</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>openslp daemon</fullname>
+      <gid>2</gid>
+      <home>/var/lib/empty</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/sbin/nologin</shell>
+      <uid>494</uid>
+      <user_password>!</user_password>
+      <username>openslp</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>User for D-Bus</fullname>
+      <gid>499</gid>
+      <home>/var/run/dbus</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/false</shell>
+      <uid>499</uid>
+      <user_password>!</user_password>
+      <username>messagebus</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>User for nscd</fullname>
+      <gid>495</gid>
+      <home>/run/nscd</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/sbin/nologin</shell>
+      <uid>496</uid>
+      <user_password>!</user_password>
+      <username>nscd</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>user for rpcbind</fullname>
+      <gid>65534</gid>
+      <home>/var/lib/empty</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/sbin/nologin</shell>
+      <uid>495</uid>
+      <user_password>!</user_password>
+      <username>rpc</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>Games account</fullname>
+      <gid>100</gid>
+      <home>/var/games</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>12</uid>
+      <user_password>*</user_password>
+      <username>games</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>SSH daemon</fullname>
+      <gid>498</gid>
+      <home>/var/lib/sshd</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/false</shell>
+      <uid>498</uid>
+      <user_password>!</user_password>
       <username>sshd</username>
     </user>
     <user>
       <encrypted config:type="boolean">true</encrypted>
-      <fullname>PulseAudio daemon</fullname>
-      <gid>109</gid>
-      <home>/var/lib/pulseaudio</home>
+      <fullname>Unix-to-Unix CoPy system</fullname>
+      <gid>14</gid>
+      <home>/etc/uucp</home>
       <password_settings>
-        <expire></expire>
-        <flag></flag>
-        <inact></inact>
-        <max>99999</max>
-        <min>0</min>
-        <warn>7</warn>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
       </password_settings>
-      <shell>/bin/false</shell>
-      <uid>105</uid>
+      <shell>/bin/bash</shell>
+      <uid>10</uid>
       <user_password>*</user_password>
-      <username>pulse</username>
+      <username>uucp</username>
+    </user>
+    <user>
+      <encrypted config:type="boolean">true</encrypted>
+      <fullname>Printing daemon</fullname>
+      <gid>7</gid>
+      <home>/var/spool/lpd</home>
+      <password_settings>
+        <expire/>
+        <flag/>
+        <inact/>
+        <max/>
+        <min/>
+        <warn/>
+      </password_settings>
+      <shell>/bin/bash</shell>
+      <uid>4</uid>
+      <user_password>*</user_password>
+      <username>lp</username>
     </user>
   </users>
 </profile>
